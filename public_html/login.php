@@ -1,0 +1,25 @@
+<?php
+
+require_once(__DIR__ . '/../config/config.php');
+
+// $app = new App\Controller\Login();
+// $app->run();
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>ログイン画面</title>
+</head>
+<body>
+	<h1>ログインページ</h1>
+	<h2>通常ログイン</h2>
+	<form action="" method="post">
+		<div>
+			<div>ID: <input type="text" name="user_id" value="" placeholder="sample01"></div>
+			<div>PASS: <input type="password" name="user_password" value="" placeholder="****"></div>
+			<div><input type="submit" name="" value="ログイン"></div>
+		</div>
+	</form>
+</body>
+</html>
