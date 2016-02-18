@@ -28,24 +28,40 @@ require_once(__DIR__ . '/../config/config.php');
 
 	</head>
 	<body>
+	<div class="container">
 		<h1 class="text-center">ログイン画面</h1>
-		<h2>通常ログイン</h2>
-		<form action="" method="post">
-			<div>
-				<div>ID: <input type="text" name="user_id" value="" placeholder="sample01"></div>
-				<div>PASS: <input type="password" name="user_password" value="" placeholder="****"></div>
-				<div><input type="submit" name="" value="ログイン"></div>
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>通常ログイン</h2>
+				<form action="" method="post">
+					<div>
+						<div class="form-group">
+							<label class="control-label">ID:</label>
+							<input type="text" class="form-control" name="user_id" value="" placeholder="sample01">
+						</div>
+						<div class="form-group">
+							<label class="control-label">PASS:</label>
+							<input type="password" class="form-control" name="user_password" value="" placeholder="****">
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary" name="" value="ログイン">
+						</div>
+					</div>
+				</form>
 			</div>
-		</form>
+			<div class="col-sm-6">
+				<a class="btn btn-block btn-social btn-lg btn-twitter">
+				<span class="fa fa-twitter"></span>
+				Twitterでログイン
+				</a>
+			</div>
+		</div>
+	</div>
 
-		<a class="btn btn-block btn-social btn-twitter">
-		<span class="fa fa-twitter"></span>
-		Sign in with Twitter
-		</a>
 
-		<!-- jQuery -->
-		<script src="//code.jquery.com/jquery.js"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="//code.jquery.com/jquery.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 	</body>
 </html>
