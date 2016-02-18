@@ -14,7 +14,7 @@ require_once(__DIR__ . '/../config/config.php');
 		<title>Title Page</title>
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/bootstrap-3.3.6/css/bootstrap.min.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,6 +22,10 @@ require_once(__DIR__ . '/../config/config.php');
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="assets/bootstrap-social/bootstrap-social.css">
+
 	</head>
 	<body>
 		<h1 class="text-center">ログイン画面</h1>
@@ -34,9 +38,14 @@ require_once(__DIR__ . '/../config/config.php');
 			</div>
 		</form>
 
+		<a class="btn btn-block btn-social btn-twitter">
+		<span class="fa fa-twitter"></span>
+		Sign in with Twitter
+		</a>
+
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+		<script src="assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 	</body>
 </html>
