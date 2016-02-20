@@ -2,8 +2,8 @@
 
 require_once(__DIR__ . '/../config/config.php');
 
-// $app = new App\Controller\Login();
-// $app->run();
+$app = new App\Controller\Signup();
+$app->run();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -29,32 +29,30 @@ require_once(__DIR__ . '/../config/config.php');
 	</head>
 	<body>
 	<div class="container">
-		<h1 class="text-center">ログイン画面</h1>
+		<h1 class="text-center">新規登録</h1>
+		<?php if($app->hasErrors()): ?>
+			<div class="alert alert-danger">
+			<p><?php echo h($app->getErrors('message'));?></p>
+			</div>
+		<?php endif; ?>
 		<div class="row">
-			<div class="col-sm-6">
-				<h2>通常ログイン</h2>
+			<div class="col-sm">
 				<form action="" method="post">
 					<div>
 						<div class="form-group">
 							<label class="control-label">Email:</label>
-							<input type="text" class="form-control" name="user_email" value="" placeholder="sample01">
+							<input type="text" class="form-control" name="user_email" value="<?php echo isset($app->getValues()->user_email) ? h($app->getValues()->user_email) : '';  ?>" placeholder="sample@example.com">
 						</div>
 						<div class="form-group">
 							<label class="control-label">PASS:</label>
 							<input type="password" class="form-control" name="user_password" value="" placeholder="****">
 						</div>
 						<div class="form-group">
-							<input type="submit" class="btn btn-primary" name="" value="ログイン">
+							<input type="submit" class="btn btn-primary" name="" value="サインアップ">
 						</div>
 					</div>
 				</form>
-				<a href="signup.php" title="">サインアップ</a>
-			</div>
-			<div class="col-sm-6">
-				<a href="?type=twitter" class="btn btn-block btn-social btn-lg btn-twitter">
-				<span class="fa fa-twitter"></span>
-				Twitterでログイン
-				</a>
+				<a href="login.php" title="">ログイン</a>
 			</div>
 		</div>
 	</div>
