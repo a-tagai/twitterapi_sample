@@ -51,6 +51,7 @@ $app->run();
 							<input type="submit" class="btn btn-primary" name="" value="サインアップ">
 						</div>
 					</div>
+					<input type="hidden" name="token" value="<?php echo  h($_SESSION['token']);?>">
 				</form>
 				<a href="login.php" title="">ログイン</a>
 			</div>

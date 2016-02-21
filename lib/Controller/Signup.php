@@ -11,6 +11,12 @@ class Signup extends \App\Controller{
 		}
 
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			//トークンチェック
+			if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
+				echo "Invalid Token!";
+				exit;
+			}
+
 			//入力値バリデート
 			try{
 				$this->_validate();
@@ -34,7 +40,7 @@ class Signup extends \App\Controller{
 
 	private function _validate(){
 		if(!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)){
-			throw new \App\Exception\ValidateException('Invalid ID!');
+			throw new \App\Exception\ValidateException('Invalid Email!');
 		}
 		if(!preg_match('/\A[a-zA-Z0-9]+\z/', $_POST['user_password'])){
 			throw new \App\Exception\ValidateException('Invalid Password!');

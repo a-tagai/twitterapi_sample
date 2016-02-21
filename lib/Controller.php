@@ -8,21 +8,31 @@ class Controller{
 	private $_errors;
 
 	public function __construct(){
+		//簡易的CSRF対策
+		if (!isset($_SESSION['token'])) {
+			$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
+		}
+		//
+
 		$this->_values = new \stdClass();
 		$this->_errors = new \stdClass();
 
 	}
 
-	//Accessor for $_values
+	//Accessor for $this->_values
 	protected function setValues($key, $value) {
 		$this->_values->$key = $value;
 	}
-	public function getValues() {
-		return $this->_values;
+	public function getValues($key = '') {
+		if($key === ''){
+			return $this->_values;
+		}else{
+			return isset($this->_values->$key) ?  $this->_values->$key : '';
+		}
 	}
 	//
 
-	//Accessor for $_errors
+	//Accessor for $this->_errors
 	protected function setErrors($key, $value){
 		$this->_errors->$key = $value;
 	}
