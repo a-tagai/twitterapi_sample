@@ -17,34 +17,24 @@ class Signup extends \App\Controller{
 				exit;
 			}
 
-			//入力値バリデート
-			try{
-				$this->_validate();
-			}catch(\App\Exception\ValidateException $e){
-				$this->setErrors('message', $e->getMessage());
-			}
-
-			$this->setValues('user_email', $_POST['user_email']);
-
-			if($this->hasErrors()){
-				return;
-			}else{
+			if($this->_validate()){
 				//ユーザー作成
 				//リダイレクト
+			}else{
+				$this->setValues('user_email', $_POST['user_email']);
+				return;
 			}
-
-			//リダイレクト
 
 		}
 	}
 
 	private function _validate(){
 		if(!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)){
-			throw new \App\Exception\ValidateException('Invalid Email!');
-		}
-		if(!preg_match('/\A[a-zA-Z0-9]+\z/', $_POST['user_password'])){
-			throw new \App\Exception\ValidateException('Invalid Password!');
+			$this->setErrors('message', 'Invalid Email!');
+		}elseif(!preg_match('/\A[a-zA-Z0-9]+\z/', $_POST['user_password'])){
+			$this->setErrors('message', 'Invalid Password!');
 		}
 
+		return $this->hasErrors() ? false : true;
 	}
 }
