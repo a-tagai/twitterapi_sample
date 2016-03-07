@@ -11,38 +11,42 @@ class Signup extends \App\Controller{
 		}
 
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
-			//トークンチェック
-			if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
-				echo "Invalid Token!";
-				exit;
-			}
-
-			try{
-				//入力値バリデーション
-				$this->_validate();
-			}catch(\Exception $e){
-				$this->setValues('user_email', $_POST['user_email']);
-
-				$this->setErrors('message', $e->getMessage());
-				return;
-			}
-
-			//ユーザー作成
-			$userModel = new \App\Model\User();
-			try{
-				$userModel->create([
-					'email' => $_POST['user_email'],
-					'password' => $_POST['user_password']
-				]);
-			}catch(\Exception $e){
-				$this->setErrors('message', $e->getMessage());
-				return;
-			}
-
-			header('Location: ' . SITE_URL . 'login.php');
-			exit;
-
+			$this->doPost();
 		}
+	}
+	protected function doPost(){
+		//トークンチェック
+		if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
+			echo "Invalid Token!";
+			exit;
+		}
+
+		//セッションに入力値を保存
+		$this->setValues('user_email', $_POST['user_email']);
+
+		//入力値バリデーション
+		try{
+			$this->_validate();
+		}catch(\Exception $e){
+			$this->setErrors('message', $e->getMessage());
+			return;
+		}
+
+		//ユーザー作成
+		$userModel = new \App\Model\User();
+		try{
+			$userModel->create([
+				'email' => $_POST['user_email'],
+				'password' => $_POST['user_password']
+			]);
+		}catch(\Exception $e){
+			$this->setErrors('message', $e->getMessage());
+			return;
+		}
+
+		header('Location: ' . SITE_URL . 'login.php');
+		exit;
+
 	}
 
 	private function _validate(){
