@@ -16,14 +16,14 @@ class User extends \App\Model{
 				':password' => password_hash($values['password'], PASSWORD_DEFAULT)
 			]);
 			if($rs === false){
-				throw new \Exception("error!!");
+				throw new \App\Exception\CreateUserException();
 			}
-		}catch(\Exception $e){
+		}catch(\App\Exception\CreateUserException $e){
 			throw $e;
 		}
 	}
 
-	public function login($values){
+	public function findUser($values){
 		try{
 			$sql = "SELECT * FROM users WHERE email = :email";
 			$stmt = $this->conn->prepare($sql);
@@ -34,13 +34,13 @@ class User extends \App\Model{
 			$user = $stmt->fetch();
 
 			if(empty($user)){
-				throw new \Exception("ユーザーが存在しません。");
+				throw new \App\Exception\UnmatchUserException("ユーザーが存在しません。");
 			}
 			if(!password_verify($values['password'], $user->password)){
-				throw new \Exception("パスワードが一致しません。");
+				throw new \App\Exception\UnmatchUserException("パスワードが一致しません。");
 			}
 			return $user;
-		}catch(\Exception $e){
+		}catch(\App\Exception\UnmatchUserException $e){
 			throw $e;
 		}
 	}

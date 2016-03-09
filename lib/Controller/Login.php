@@ -21,21 +21,21 @@ class Login extends \App\Controller{
 			exit;
 		}
 
-		//セッションに入力値を保存
+		//Viewの入力項目値の維持用
 		$this->setValues('user_email', $_POST['user_email']);
 
 		//入力値バリデーション
 		try{
 			$this->_validate();
-		}catch(\Exception $e){
+		}catch(\App\Exception\ValidateException $e){
 			$this->setErrors('message', $e->getMessage());
 			return;
 		}
 
-		//ログイン
+		//ログイン処理
 		try{
 			$this->_login();
-		}catch(\Exception $e){
+		}catch(\App\Exception\UnmatchUserException $e){
 			$this->setErrors('message', $e->getMessage());
 			return;
 		}
@@ -47,11 +47,11 @@ class Login extends \App\Controller{
 	private function _login(){
 		$userModel = new \App\Model\User();
 		try{
-			$user = $userModel->login([
+			$user = $userModel->findUser([
 				'email' => $_POST['user_email'],
 				'password' => $_POST['user_password']
 			]);
-		}catch(\Exception $e){
+		}catch(\App\Exception\UnmatchUserException $e){
 			throw $e;
 			return;
 		}
@@ -61,9 +61,9 @@ class Login extends \App\Controller{
 
 	private function _validate(){
 		if(!isset($_POST['user_email']) || $_POST['user_email'] === ''){
-			throw new \Exception("Invalid Email!");
+			throw new \App\Exception\ValidateException("Invalid Email!");
 		}elseif(!isset($_POST['user_password']) || $_POST['user_password'] === ''){
-			throw new \Exception("Invalid Password!");
+			throw new \App\Exception\ValidateException("Invalid Password!");
 		}
 	}
 }

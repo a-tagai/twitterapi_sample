@@ -21,13 +21,13 @@ class Signup extends \App\Controller{
 			exit;
 		}
 
-		//セッションに入力値を保存
+		//Viewの入力項目値の維持用
 		$this->setValues('user_email', $_POST['user_email']);
 
 		//入力値バリデーション
 		try{
 			$this->_validate();
-		}catch(\Exception $e){
+		}catch(\App\Exception\ValidateException $e){
 			$this->setErrors('message', $e->getMessage());
 			return;
 		}
@@ -39,7 +39,7 @@ class Signup extends \App\Controller{
 				'email' => $_POST['user_email'],
 				'password' => $_POST['user_password']
 			]);
-		}catch(\Exception $e){
+		}catch(\App\Exception\CreateUserException $e){
 			$this->setErrors('message', $e->getMessage());
 			return;
 		}
@@ -51,9 +51,9 @@ class Signup extends \App\Controller{
 
 	private function _validate(){
 		if(!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)){
-			throw new \Exception("Invalid Email!");
+			throw new \App\Exception\ValidateException("Invalid Email!");
 		}elseif(!preg_match('/\A[a-zA-Z0-9]+\z/', $_POST['user_password'])){
-			throw new \Exception("Invalid Password!");
+			throw new \App\Exception\ValidateException("Invalid Password!");
 		}
 	}
 
