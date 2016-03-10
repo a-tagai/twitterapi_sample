@@ -61,9 +61,9 @@ class Login extends \App\Controller{
 
 	private function _validate(){
 		if(!isset($_POST['user_email']) || $_POST['user_email'] === ''){
-			throw new \App\Exception\ValidateException("Invalid Email!");
+			throw new \App\Exception\ValidateException("無効なメールアドレスです");
 		}elseif(!isset($_POST['user_password']) || $_POST['user_password'] === ''){
-			throw new \App\Exception\ValidateException("Invalid Password!");
+			throw new \App\Exception\ValidateException("無効なパスワードです");
 		}
 	}
 }
