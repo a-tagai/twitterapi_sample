@@ -7,4 +7,5 @@ cd twitterapi_sample/
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 ```
+.htaccess有効化しとく必要あり
 
