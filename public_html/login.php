@@ -28,11 +28,12 @@ $app->run();
 
 	</head>
 	<body>
+	<?php require_once(__DIR__ . '/common/header.php'); ?>
 	<div class="container">
 		<h1 class="text-center">ログイン画面</h1>
 		<?php if($app->hasErrors()): ?>
 			<div class="alert alert-danger">
-			<p><?php echo h($app->getErrors('message'));?></p>
+			<p><?= h($app->getErrors('message'));?></p>
 			</div>
 		<?php endif; ?>
 		<div class="row">
@@ -42,7 +43,7 @@ $app->run();
 					<div>
 						<div class="form-group">
 							<label class="control-label">Email:</label>
-							<input type="text" class="form-control" name="user_email" value="<?php echo isset($app->getValues()->user_email) ? h($app->getValues()->user_email) : '';  ?>" placeholder="sample01">
+							<input type="text" class="form-control" name="user_email" value="<?= isset($app->getValues()->user_email) ? h($app->getValues()->user_email) : '';  ?>" placeholder="sample01">
 						</div>
 						<div class="form-group">
 							<label class="control-label">PASS:</label>
@@ -52,7 +53,7 @@ $app->run();
 							<input type="submit" class="btn btn-primary" name="" value="ログイン">
 						</div>
 					</div>
-					<input type="hidden" name="token" value="<?php echo  h($_SESSION['token']);?>">
+					<input type="hidden" name="token" value="<?= h($_SESSION['token']);?>">
 				</form>
 				<a href="signup.php" title="">サインアップ</a>
 			</div>

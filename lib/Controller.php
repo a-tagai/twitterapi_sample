@@ -45,7 +45,7 @@ class Controller{
 		return !empty(get_object_vars($this->_errors));
 	}
 
-	protected function isLoggedIn(){
-		return isset($_SESSION['member']) && !empty($_SESSION['member']);
+	public function isLoggedIn(){
+		return isset($_SESSION['user']) && !empty($_SESSION['user']);
 	}
 }

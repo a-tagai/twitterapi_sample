@@ -28,11 +28,12 @@ $app->run();
 
 	</head>
 	<body>
+	<?php require_once(__DIR__ . '/common/header.php'); ?>
 	<div class="container">
 		<h1 class="text-center">新規登録</h1>
 		<?php if($app->hasErrors()): ?>
 			<div class="alert alert-danger">
-			<p><?php echo h($app->getErrors('message'));?></p>
+			<p><?= h($app->getErrors('message'));?></p>
 			</div>
 		<?php endif; ?>
 		<div class="row">
@@ -41,7 +42,7 @@ $app->run();
 					<div>
 						<div class="form-group">
 							<label class="control-label">Email:</label>
-							<input type="text" class="form-control" name="user_email" value="<?php echo isset($app->getValues()->user_email) ? h($app->getValues()->user_email) : '';  ?>" placeholder="sample@example.com">
+							<input type="text" class="form-control" name="user_email" value="<?= isset($app->getValues()->user_email) ? h($app->getValues()->user_email) : '';  ?>" placeholder="sample@example.com">
 						</div>
 						<div class="form-group">
 							<label class="control-label">PASS:</label>
@@ -51,7 +52,7 @@ $app->run();
 							<input type="submit" class="btn btn-primary" name="" value="サインアップ">
 						</div>
 					</div>
-					<input type="hidden" name="token" value="<?php echo  h($_SESSION['token']);?>">
+					<input type="hidden" name="token" value="<?= h($_SESSION['token']);?>">
 				</form>
 				<a href="login.php" title="">ログイン</a>
 			</div>
