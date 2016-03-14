@@ -9,5 +9,8 @@ class Index extends \App\Controller{
 			header('Location: ' . SITE_URL . 'login.php');
 			exit;
 		}
+
+		$userModel = new \App\Model\User();
+		$this->setValues('users', $userModel->findAll());
 	}
 }

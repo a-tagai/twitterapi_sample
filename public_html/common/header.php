@@ -13,16 +13,17 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="<?= SITE_URL ?>">Home</a></li>
 			</ul>
+			<?php if($app->isLoggedIn()): ?>
 			<ul class="nav navbar-nav navbar-right">
+				<li class="navbar-text"><?= h($app->user()->email) ?></li>
 				<li>
-				<?php if($app->isLoggedIn()): ?>
 					<form action="logout.php" method="post">
 					<input type="submit" class="btn btn-default navbar-btn" name="" value="ログアウト">
 					<input type="hidden" name="token" value="<?= h($_SESSION['token']);?>">
 					</form>
-				<?php endif; ?>
 				</li>
 			</ul>
+			<?php endif; ?>
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>

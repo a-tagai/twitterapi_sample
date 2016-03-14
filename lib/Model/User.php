@@ -45,4 +45,10 @@ class User extends \App\Model{
 		}
 	}
 
+	public function findAll(){
+		$stmt = $this->conn->query("select * from users order by id");
+		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
+		return $stmt->fetchAll();
+	}
+
 }

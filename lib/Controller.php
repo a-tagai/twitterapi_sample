@@ -48,4 +48,13 @@ class Controller{
 	public function isLoggedIn(){
 		return isset($_SESSION['user']) && !empty($_SESSION['user']);
 	}
+
+	/**
+	 * 現在のログインユーザー情報を返す
+	 * @return $_SESSION['user']　現在のログインユーザー情報（未ログイン時はnull）
+	 */
+	public function user(){
+		return $this->isLoggedIn() ? $_SESSION['user'] : null;
+	}
+
 }
