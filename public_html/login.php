@@ -14,7 +14,7 @@ $app->run();
 		<title>Title Page</title>
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/bootstrap-3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,8 +68,8 @@ $app->run();
 
 
 	<!-- jQuery -->
-	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="assets/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap JavaScript -->
-	<script src="assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+	<script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
 	</body>
 </html>
