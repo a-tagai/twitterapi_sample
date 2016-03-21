@@ -25,35 +25,35 @@ class Signup extends \App\Controller{
 		$this->setValues('user_email', $_POST['user_email']);
 
 		//入力値バリデーション
-		try{
-			$this->_validate();
-		}catch(\App\Exception\ValidateException $e){
-			$this->setErrors('message', $e->getMessage());
+		if(!$this->_isValidate()){
+			$this->setErrors('message', '無効な入力値です');
 			return;
 		}
 
 		//ユーザー作成
 		$userModel = new \App\Model\User();
-		try{
-			$userModel->create([
-				'email' => $_POST['user_email'],
-				'password' => $_POST['user_password']
-			]);
-		}catch(\App\Exception\CreateUserException $e){
-			$this->setErrors('message', $e->getMessage());
+		$user = $userModel->create([
+			'email' => $_POST['user_email'],
+			'password' => $_POST['user_password']
+		]);
+
+		if($user){
+			header('Location: ' . SITE_URL . 'login.php');
+			exit;
+		}else{
+			$this->setErrors('message', '新規アカウントの作成に失敗しました。既に登録されている可能性があります。');
 			return;
 		}
 
-		header('Location: ' . SITE_URL . 'login.php');
-		exit;
-
 	}
 
-	private function _validate(){
+	private function _isValidate(){
 		if(!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)){
-			throw new \App\Exception\ValidateException("Invalid Email!");
+			return false;
 		}elseif(!preg_match('/\A[a-zA-Z0-9]+\z/', $_POST['user_password'])){
-			throw new \App\Exception\ValidateException("Invalid Password!");
+			return false;
+		}else{
+			return true;
 		}
 	}
 

@@ -8,7 +8,7 @@ define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/twitterapi_sample/');
 //twitterAPI settings
 define('TWITTER_CONSUMER_KEY','*******');
 define('TWITTER_CONSUMER_SECRET','*******');
-define('TWITTER_CAKKBACK_URL',SITE_URL . '/login.php');
+define('TWITTER_CAKKBACK_URL',SITE_URL . '/authTwitter.php');
 //
 
 //database settings

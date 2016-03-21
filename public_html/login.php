@@ -58,7 +58,7 @@ $app->run();
 				<a href="signup.php" title="">サインアップ</a>
 			</div>
 			<div class="col-sm-6">
-				<a href="?type=twitter" class="btn btn-block btn-social btn-lg btn-twitter">
+				<a href="authTwitter.php" class="btn btn-block btn-social btn-lg btn-twitter">
 				<span class="fa fa-twitter"></span>
 				Twitterでログイン
 				</a>

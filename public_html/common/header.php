@@ -15,7 +15,7 @@
 			</ul>
 			<?php if($app->isLoggedIn()): ?>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="navbar-text"><?= h($app->user()->email) ?></li>
+				<li class="navbar-text"><?= h($app->user()->name) ?></li>
 				<li>
 					<form action="logout.php" method="post">
 					<input type="submit" class="btn btn-default navbar-btn" name="" value="ログアウト">

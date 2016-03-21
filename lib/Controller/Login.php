@@ -25,45 +25,46 @@ class Login extends \App\Controller{
 		$this->setValues('user_email', $_POST['user_email']);
 
 		//入力値バリデーション
-		try{
-			$this->_validate();
-		}catch(\App\Exception\ValidateException $e){
-			$this->setErrors('message', $e->getMessage());
+		if(!$this->_isValidate()){
+			$this->setErrors('message', '無効な値です');
 			return;
 		}
+
 
 		//ログイン処理
-		try{
-			$this->_login();
-		}catch(\App\Exception\UnmatchUserException $e){
-			$this->setErrors('message', $e->getMessage());
+		if($this->_login()){
+			header('Location: ' . SITE_URL);
+			exit;
+		}else{
+			$this->setErrors('message', 'ログインに失敗しました');
 			return;
 		}
 
-		header('Location: ' . SITE_URL);
-		exit;
 	}
 
 	private function _login(){
 		$userModel = new \App\Model\User();
-		try{
-			$user = $userModel->findUser([
-				'email' => $_POST['user_email'],
-				'password' => $_POST['user_password']
-			]);
-		}catch(\App\Exception\UnmatchUserException $e){
-			throw $e;
-			return;
+		$user = $userModel->findUser([
+			'email' => $_POST['user_email'],
+			'password' => $_POST['user_password']
+		]);
+		if($user){
+			session_regenerate_id(true);
+			$_SESSION["user"] = $user;
+			return true;
+		}else{
+			return false;
 		}
-		session_regenerate_id(true);
-		$_SESSION["user"] = $user;
+
 	}
 
-	private function _validate(){
+	private function _isValidate(){
 		if(!isset($_POST['user_email']) || $_POST['user_email'] === ''){
-			throw new \App\Exception\ValidateException("無効なメールアドレスです");
+			return false;
 		}elseif(!isset($_POST['user_password']) || $_POST['user_password'] === ''){
-			throw new \App\Exception\ValidateException("無効なパスワードです");
+			return false;
+		}else{
+			return true;
 		}
 	}
 }

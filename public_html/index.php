@@ -42,7 +42,7 @@ $app->run();
 			<thead>
 			<tr>
 				<th>id</th>
-				<th>メールアドレス</th>
+				<th>ユーザー名</th>
 				<th>登録日</th>
 			</tr>
 			</thead>
@@ -50,7 +50,7 @@ $app->run();
 			<?php foreach ($app->getValues()->users as $user): ?>
 			<tr>
 				<td><?= h($user->id); ?></td>
-				<td><?= h($user->email); ?></td>
+				<td><?= h($user->name); ?></td>
 				<td><?= h($user->created); ?></td>
 			</tr>
 			<?php endforeach; ?>
