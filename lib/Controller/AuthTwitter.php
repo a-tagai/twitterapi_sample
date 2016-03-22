@@ -74,7 +74,7 @@ class AuthTwitter extends \App\Controller{
 		}
 
 
-		//ログインユーザー情報としてセッションに保存
+		//ログイン処理
 		session_regenerate_id(true);
 		$_SESSION['user'] = $user->findTwitterUser([
 			'tw_user_id' => $tokens['user_id']
