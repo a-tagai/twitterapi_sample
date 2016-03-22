@@ -1,4 +1,4 @@
-# loginApp
+# login_app
 ソーシャルログインざっくり検証用  
 ## 機能：  
 * 通常ログイン  
@@ -6,7 +6,7 @@
 
 ## Installation
 ```
-cd twitterapi_sample/
+cd login_app/
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 
@@ -14,8 +14,8 @@ php composer.phar install
 bower install
 
 ```
-/config/config.sample.phpを/config/config.phpにリネーム。
-中のPDOの接続設定とか、Twitterのコンシューマーキーの設定とかを自分の環境に合わせる
+``/config/config.sample.php``を``/config/config.php``にリネーム。
+PDOの接続設定とか、Twitterのコンシューマーキーの設定とかを自分の環境に合わせる
 
 
 .htaccess有効化しとく必要あり
