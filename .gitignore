@@ -1,0 +1,7 @@
+.DS_Store
+config/config.php
+composer.phar
+vendor/*
+!vendor/.gitkeep
+public_html/assets/*
+!public_html/assets/.gitkeep
