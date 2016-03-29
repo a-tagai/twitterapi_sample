@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 
 
-define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/twitterapi_sample/');
+define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/login_app/');
 
 //twitterAPI settings
 define('TWITTER_CONSUMER_KEY','*******');
